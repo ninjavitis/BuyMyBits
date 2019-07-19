@@ -1,9 +1,16 @@
 import React from 'react';
+import Items from './Items'
+import {Segment} from 'semantic-ui-react'
 
-const Home = () => (
-  <div>
-    Hello
-  </div>
-);
+const Home = () => {
+
+
+  return(
+    <Segment>
+      <Items/>
+    </Segment>
+
+  )
+};
 
 export default Home;
