@@ -6,8 +6,6 @@ import styled from 'styled-components'
 import Navbar from './Components/Navbar'
 
 
-
-
 const App = () => {
   const AppContainer = styled.div`
     background: repeating-linear-gradient(
