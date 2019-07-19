@@ -11,11 +11,11 @@ import Navbar from './Components/Navbar'
 const App = () => {
   const AppContainer = styled.div`
     background: repeating-linear-gradient(
-      45deg,
-      #222,
-      #222 1px,
-      #111 7px,
-      #111 10px
+      -45deg,
+      #1a1a1a,
+      #1a1a1a 6px,
+      #222 6px,
+      #222 12px
     );
   `;
 

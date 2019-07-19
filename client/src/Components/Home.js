@@ -4,7 +4,6 @@ import {Segment} from 'semantic-ui-react'
 
 const Home = () => {
 
-
   return(
     <Segment>
       <Items/>
