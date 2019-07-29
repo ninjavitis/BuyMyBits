@@ -19,7 +19,7 @@ const App = () => {
   `;
 
   return(
-    <AppContainer style={{height: '100vh'}}>
+    <AppContainer style={{height: '100%'}}>
     <Navbar />
     <Container>
       <Switch>
