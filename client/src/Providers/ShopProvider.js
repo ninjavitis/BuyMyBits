@@ -5,10 +5,21 @@ export const ShopContext = React.createContext()
 export const ShopConsumer = ShopContext.Consumer
 
 export class ShopProvider extends React.Component {
-  state = { items: [], };
+  state = { 
+    items: [],
+    cart: [],
+   };
 
   componentDidMount(){
     this.getItems();
+  }
+
+  addToCart = (item) => {
+    this.setState({cart:[...this.state.cart, item]})
+  }
+
+  emptyCart = () => {
+    this.setState({cart:[]})
   }
 
   getItems = ()=>{
@@ -20,6 +31,8 @@ export class ShopProvider extends React.Component {
    return(
     <ShopContext.Provider value ={{
       ...this.state,
+      addToCart: this.addToCart,
+      emptyCart: this.emptyCart,
     }}>
       {this.props.children}
     </ShopContext.Provider>

@@ -1,23 +1,19 @@
-import React, {useState} from 'react';
-import {Menu, Segment, Divider} from 'semantic-ui-react'
-import {CartItem} from './CartItem'
-import {ShopConsumer} from '../Providers/ShopProvider'
+import React, {useContext} from 'react';
+import {Segment, Divider, Item} from 'semantic-ui-react'
+import CartItem from './CartItem'
+import {ShopContext} from '../Providers/ShopProvider'
 
 const FloatingCart = () => {
-  const [cartItems, setCartItems] = useState()
+  const {cart} = useContext(ShopContext)
 
-
-  const getTotal=()=>{
-    return(
-      <></>
-    )
-  }
 
   return(
     <Segment>
       <h1>Cart</h1>
       <Divider />
-
+      <Item.Group>
+        {cart.map((item)=><CartItem key={item.item.itemid} item={item}/>)}
+      </Item.Group>
       <Divider />
       <h4>
         Sub-total:
@@ -26,7 +22,7 @@ const FloatingCart = () => {
         Shipping: Free!
       </h4>
       <h3>
-        Total{getTotal}
+
       </h3>
     </Segment>
   )
