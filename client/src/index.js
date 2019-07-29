@@ -4,13 +4,17 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import 'semantic-ui-css/semantic.min.css'
 import App from './App';
 import styled from 'styled-components';
+import {ShopProvider} from './Providers/ShopProvider';
 
 
 
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>
-, document.getElementById('root'));
+  <ShopProvider>
+    <Router>
+      <App />
+    </Router>
+  </ShopProvider>
+, document.getElementById('root')
+);
 
 

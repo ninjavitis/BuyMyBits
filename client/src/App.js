@@ -2,6 +2,7 @@ import React from 'react';
 import {Switch, Route, } from 'react-router-dom'
 import {Container} from 'semantic-ui-react'
 import home from './Components/Home'
+import Cart from './Components/Cart'
 import styled from 'styled-components'
 import Navbar from './Components/Navbar'
 
@@ -18,11 +19,12 @@ const App = () => {
   `;
 
   return(
-    <AppContainer>
+    <AppContainer style={{height: '100vh'}}>
     <Navbar />
     <Container>
       <Switch>
         <Route exact path='/' component={home}/>
+        <Route exact path='/cart' component={Cart}/>
       </Switch>
     </Container>
     </AppContainer>
