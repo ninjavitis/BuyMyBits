@@ -22,6 +22,10 @@ export class ShopProvider extends React.Component {
     this.setState({cart:[]})
   }
 
+  convertPrice=(value)=>{
+    return (parseFloat(value) / 1000).toFixed(2)
+  }
+
   getItems = ()=>{
     axios.get(`https://fortnite-public-api.theapinetwork.com/store/get`)
     .then(res=> this.setState({items:res.data.items}))
@@ -33,6 +37,7 @@ export class ShopProvider extends React.Component {
       ...this.state,
       addToCart: this.addToCart,
       emptyCart: this.emptyCart,
+      convertPrice: this.convertPrice,
     }}>
       {this.props.children}
     </ShopContext.Provider>

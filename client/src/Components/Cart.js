@@ -4,7 +4,8 @@ import CartItem from './CartItem'
 import {ShopContext} from '../Providers/ShopProvider'
 
 const FloatingCart = () => {
-  const {cart} = useContext(ShopContext)
+  const {cart, items} = useContext(ShopContext)
+
 
 
   return(
@@ -12,7 +13,7 @@ const FloatingCart = () => {
       <h1>Cart</h1>
       <Divider />
       <Item.Group>
-        {cart.map((item)=><CartItem key={item.item.itemid} item={item}/>)}
+        {cart.map((item)=><CartItem key={item} item={item}/>)}
       </Item.Group>
       <Divider />
       <h4>

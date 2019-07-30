@@ -1,15 +1,25 @@
-import React from 'react';
-import {Item, Image} from 'semantic-ui-react'
+import React,{useContext} from 'react';
+import {Item, Image, Button, Icon} from 'semantic-ui-react'
+import {ShopContext} from '../Providers/ShopProvider'
 
-const CartItem = ({item}) => (
-  <>
-  <Item>
-    <Item.Image size='tiny' src={item.item.item.images.transparent}/>
-    <Item.Content verticalAlign='middle'>
-      {item.item.name}
-    </Item.Content>
-  </Item>
-  </>
-);
 
+const CartItem = ({item}) => {
+  const {items, convertPrice} = useContext(ShopContext)
+
+  return(
+    <>
+    {console.log(item)}
+      <Item>
+        <Item.Image size='tiny' src={items[item].item.images.transparent}/>
+        <Item.Content verticalAlign='middle'> 
+          <Item.Header ><h3>{items[item].name}</h3></Item.Header>
+          <Item.Meta>${convertPrice(items[item].cost)}</Item.Meta>
+          <Item.Description>{items[item].item.description}</Item.Description>
+          Quantity:
+          <Button icon color='red'><Icon name="trash"/></Button> 
+        </Item.Content>
+      </Item>
+    </>
+  )
+}
 export default CartItem;
