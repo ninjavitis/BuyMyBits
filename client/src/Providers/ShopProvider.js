@@ -8,6 +8,7 @@ export class ShopProvider extends React.Component {
   state = { 
     items: [],
     cart: [],
+    conversionRate: 1000,
    };
 
   componentDidMount(){
@@ -23,7 +24,18 @@ export class ShopProvider extends React.Component {
   }
 
   convertPrice=(value)=>{
-    return (parseFloat(value) / 1000).toFixed(2)
+    return (parseFloat(value) / this.state.conversionRate).toFixed(2)
+  }
+
+  // Calculates the subtotal before tax +shipping
+  subTotal=()=>{
+    let subT = 0.0
+    this.state.cart.forEach(item => {
+      console.log(item)
+      subT += parseFloat(this.state.items[item].cost / this.state.conversionRate)
+      console.log(subT)
+    });
+    return subT.toFixed(2)
   }
 
   getItems = ()=>{
@@ -38,6 +50,7 @@ export class ShopProvider extends React.Component {
       addToCart: this.addToCart,
       emptyCart: this.emptyCart,
       convertPrice: this.convertPrice,
+      subTotal: this.subTotal,
     }}>
       {this.props.children}
     </ShopContext.Provider>

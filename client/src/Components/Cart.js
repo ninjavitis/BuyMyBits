@@ -4,7 +4,7 @@ import CartItem from './CartItem'
 import {ShopContext} from '../Providers/ShopProvider'
 
 const FloatingCart = () => {
-  const {cart, items} = useContext(ShopContext)
+  const {cart, subTotal} = useContext(ShopContext)
 
 
 
@@ -17,7 +17,7 @@ const FloatingCart = () => {
       </Item.Group>
       <Divider />
       <h4>
-        Sub-total:
+        Sub-total: ${subTotal()}
       </h4>
       <h4>
         Shipping: Free!
