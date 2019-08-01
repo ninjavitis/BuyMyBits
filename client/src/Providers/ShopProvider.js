@@ -21,9 +21,12 @@ export class ShopProvider extends React.Component {
     this.setState({cart:[...this.state.cart, item]})
   }
 
+  // This is funky because the cart only stores item array indexes (prevents needing to pass the object around)
+  // So I have to do the extra step of looking up the itemid in the items array
+  // This is largely a side-effect of using data from an API.  With my own custom back end I could do the individual DB queries necessary
   removeFromCart=(id)=>{
-    this.setState({cart:[this.state.cart.filter(item=> {return item.id !== id})]})
-    console.log(this.state.cart)
+    this.setState({cart:this.state.cart.filter(item=> {return this.state.items[item].itemid !== id})})
+
   }
 
   emptyCart = () => {
