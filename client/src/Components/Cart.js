@@ -13,7 +13,7 @@ const FloatingCart = () => {
       <h1>Cart</h1>
       <Divider />
       <Item.Group>
-        {cart.map((cItem,i)=><CartItem key={console.log(items[cItem.item].itemid)} item={cItem.item} cartIndex={i}/>)}
+        {cart.map((cItem,i)=><CartItem key={items[cItem.item].itemid} item={cItem.item} cartIndex={i}/>)}
       </Item.Group>
       <Divider />
       <h4>

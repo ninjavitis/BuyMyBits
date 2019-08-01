@@ -8,7 +8,6 @@ const CartItem = ({item, cartIndex}) => {
 
   return(
     <>
-    {console.log('cart item: ' + item)}
       <Item>
         <Item.Image size='tiny' src={items[item].item.images.transparent}/>
         <Item.Content verticalAlign='middle'> 
