@@ -9,6 +9,8 @@ export class ShopProvider extends React.Component {
     items: [],
     cart: [],
     conversionRate: 1000,
+    digitalFee: 2.00,
+    minFee: 0.00,
    };
 
   componentDidMount(){
@@ -19,6 +21,11 @@ export class ShopProvider extends React.Component {
     this.setState({cart:[...this.state.cart, item]})
   }
 
+  removeFromCart=(id)=>{
+    this.setState({cart:[this.state.cart.filter(item=> {return item.id !== id})]})
+    console.log(this.state.cart)
+  }
+
   emptyCart = () => {
     this.setState({cart:[]})
   }
@@ -27,15 +34,23 @@ export class ShopProvider extends React.Component {
     return (parseFloat(value) / this.state.conversionRate).toFixed(2)
   }
 
+  Total=()=>{
+    return this.subTotal() + this.deliveryFee()
+  }
+
+
   // Calculates the subtotal before tax +shipping
   subTotal=()=>{
     let subT = 0.0
+
     this.state.cart.forEach(item => {
-      console.log(item)
       subT += parseFloat(this.state.items[item].cost / this.state.conversionRate)
-      console.log(subT)
     });
-    return subT.toFixed(2)
+    return subT
+  }
+
+  deliveryFee=()=>{
+    return this.state.cart.length > 0? this.state.digitalFee : this.state.minFee
   }
 
   getItems = ()=>{
@@ -48,9 +63,12 @@ export class ShopProvider extends React.Component {
     <ShopContext.Provider value ={{
       ...this.state,
       addToCart: this.addToCart,
+      removeFromCart: this.removeFromCart,
       emptyCart: this.emptyCart,
       convertPrice: this.convertPrice,
       subTotal: this.subTotal,
+      deliveryFee: this.deliveryFee,
+      Total: this.Total,
     }}>
       {this.props.children}
     </ShopContext.Provider>

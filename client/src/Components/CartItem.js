@@ -4,7 +4,7 @@ import {ShopContext} from '../Providers/ShopProvider'
 
 
 const CartItem = ({item}) => {
-  const {items, convertPrice} = useContext(ShopContext)
+  const {items, convertPrice, removeFromCart} = useContext(ShopContext)
 
   return(
     <>
@@ -15,7 +15,7 @@ const CartItem = ({item}) => {
           <Item.Meta>${convertPrice(items[item].cost)}</Item.Meta>
           <Item.Description>{items[item].item.description}</Item.Description>
           Quantity:
-          <Button icon color='red'><Icon name="trash"/></Button> 
+          <Button icon size='tiny' color='red' onClick={()=>removeFromCart(items[item].itemid)}><Icon name="trash"/></Button> 
         </Item.Content>
       </Item>
     </>

@@ -4,7 +4,7 @@ import CartItem from './CartItem'
 import {ShopContext} from '../Providers/ShopProvider'
 
 const FloatingCart = () => {
-  const {cart, subTotal} = useContext(ShopContext)
+  const {cart, deliveryFee, subTotal, Total} = useContext(ShopContext)
 
 
 
@@ -17,13 +17,13 @@ const FloatingCart = () => {
       </Item.Group>
       <Divider />
       <h4>
-        Sub-total: ${subTotal()}
+        Sub-total: ${subTotal().toFixed(2)}
       </h4>
       <h4>
-        Shipping: Free!
+        Digital Delivery: ${deliveryFee().toFixed(2)}
       </h4>
       <h3>
-
+        Total: ${Total().toFixed(2)}
       </h3>
     </Segment>
   )
