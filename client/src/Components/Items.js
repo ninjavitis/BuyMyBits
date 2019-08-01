@@ -3,7 +3,7 @@ import {Card, Image, Button, Icon, Label,} from 'semantic-ui-react'
 import {ShopContext} from '../Providers/ShopProvider'
 
 const Items = () => {
-  const {items, addToCart} = useContext(ShopContext)
+  const {items, conversionRate, addToCart} = useContext(ShopContext)
 
   const ItemDisplay =({name,desc,image,cost,index})=>(
     <Card>
@@ -14,7 +14,7 @@ const Items = () => {
       </Card.Content>
       <Card.Content extra textAlign='center'>
         <Button as='div' labelPosition='left'>
-          <Label as='a' basic pointing='right'>$ {(parseFloat(cost) / 1000).toFixed(2)}</Label>
+          <Label as='a' basic pointing='right'>$ {(parseFloat(cost) / conversionRate).toFixed(2)}</Label>
           <Button icon color='green' onClick={()=>addToCart(index)}><Icon name='dollar sign'/>Buy These Bits</Button>
         </Button>
       </Card.Content>

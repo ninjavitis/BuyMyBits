@@ -4,7 +4,7 @@ import CartItem from './CartItem'
 import {ShopContext} from '../Providers/ShopProvider'
 
 const FloatingCart = () => {
-  const {items,cart, deliveryFee, subTotal, Total} = useContext(ShopContext)
+  const {items,cart, totalQuantity, deliveryFee, subTotal, Total} = useContext(ShopContext)
 
 
 
@@ -16,15 +16,20 @@ const FloatingCart = () => {
         {cart.map((cItem,i)=><CartItem key={items[cItem.item].itemid} item={cItem.item} cartIndex={i}/>)}
       </Item.Group>
       <Divider />
-      <h4>
-        Sub-total: ${subTotal().toFixed(2)}
-      </h4>
-      <h4>
-        Digital Delivery: ${deliveryFee().toFixed(2)}
-      </h4>
-      <h3>
-        Total: ${Total().toFixed(2)}
-      </h3>
+      <Segment textAlign='right'>
+        <h4>
+          Sub-total: ${subTotal().toFixed(2)}
+        </h4>
+        <h4>
+          Digital Delivery Fee / Item: ${(deliveryFee() / totalQuantity()).toFixed(2)} 
+        </h4>
+        <h5>
+          (${deliveryFee().toFixed(2)})
+        </h5>
+        <h3>
+          Total: ${Total().toFixed(2)}
+        </h3>
+      </Segment>
     </Segment>
   )
 };

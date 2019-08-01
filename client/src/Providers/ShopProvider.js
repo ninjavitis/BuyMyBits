@@ -9,8 +9,8 @@ export class ShopProvider extends React.Component {
   state = { 
     items: [],
     cart: [],
-    conversionRate: 1000,
-    digitalFee: 2.00,
+    conversionRate: 400,
+    digitalFee: 7.50,
     minFee: 0.00,
    };
 
@@ -60,6 +60,12 @@ export class ShopProvider extends React.Component {
     return this.subTotal() + this.deliveryFee()
   }
 
+  totalQuantity =()=>{
+    let count = 0
+    this.state.cart.map((item)=> count += item.quant)
+
+    return count
+  }
 
   // Calculates the subtotal before tax +shipping
   subTotal=()=>{
@@ -88,6 +94,7 @@ export class ShopProvider extends React.Component {
       removeFromCart: this.removeFromCart,
       emptyCart: this.emptyCart,
       updateQuantity: this.updateQuantity,
+      totalQuantity: this.totalQuantity,
       convertPrice: this.convertPrice,
       subTotal: this.subTotal,
       deliveryFee: this.deliveryFee,
