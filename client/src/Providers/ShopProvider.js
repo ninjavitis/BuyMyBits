@@ -1,4 +1,5 @@
 import React from 'react';
+import update from 'immutability-helper';
 import axios from 'axios';
 
 export const ShopContext = React.createContext()
@@ -18,15 +19,33 @@ export class ShopProvider extends React.Component {
   }
 
   addToCart = (item) => {
-    this.setState({cart:[...this.state.cart, item]})
+    // TODO
+    // 1. Check to see if the item is in the cart
+    // 2. If so increment the quantity (call update quantity function)
+    // 3. If not, add it as a new item
+
+    this.setState({cart:[...this.state.cart, {item:item, quant:1}]})
+  }
+
+  updateQuantity=(cartIndex, change)=>{
+    if (this.state.cart[cartIndex].quant + change > 0){
+      this.setState({
+        cart: update(this.state.cart, {[cartIndex]: {quant: {$set: this.state.cart[cartIndex].quant + change}}})
+      })
+    }
+    // 1. Increment or decrement quantity
+    // 2. If quantity is 0 call removeFromCart
   }
 
   // This is funky because the cart only stores item array indexes (prevents needing to pass the object around)
   // So I have to do the extra step of looking up the itemid in the items array
   // This is largely a side-effect of using data from an API.  With my own custom back end I could do the individual DB queries necessary
-  removeFromCart=(id)=>{
-    this.setState({cart:this.state.cart.filter(item=> {return this.state.items[item].itemid !== id})})
-
+  removeFromCart=(id)=>{    
+    this.setState({cart:
+      this.state.cart.filter(item=> {
+        return this.state.items[item.item].itemid !== id
+      })
+    })
   }
 
   emptyCart = () => {
@@ -46,8 +65,8 @@ export class ShopProvider extends React.Component {
   subTotal=()=>{
     let subT = 0.0
 
-    this.state.cart.forEach(item => {
-      subT += parseFloat(this.state.items[item].cost / this.state.conversionRate)
+    this.state.cart.forEach(cItem => {
+      subT += parseFloat((this.state.items[cItem.item].cost / this.state.conversionRate)* cItem.quant)
     });
     return subT
   }
@@ -68,6 +87,7 @@ export class ShopProvider extends React.Component {
       addToCart: this.addToCart,
       removeFromCart: this.removeFromCart,
       emptyCart: this.emptyCart,
+      updateQuantity: this.updateQuantity,
       convertPrice: this.convertPrice,
       subTotal: this.subTotal,
       deliveryFee: this.deliveryFee,

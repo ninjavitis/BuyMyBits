@@ -4,7 +4,7 @@ import CartItem from './CartItem'
 import {ShopContext} from '../Providers/ShopProvider'
 
 const FloatingCart = () => {
-  const {cart, deliveryFee, subTotal, Total} = useContext(ShopContext)
+  const {items,cart, deliveryFee, subTotal, Total} = useContext(ShopContext)
 
 
 
@@ -13,7 +13,7 @@ const FloatingCart = () => {
       <h1>Cart</h1>
       <Divider />
       <Item.Group>
-        {cart.map((item)=><CartItem key={item} item={item}/>)}
+        {cart.map((cItem,i)=><CartItem key={console.log(items[cItem.item].itemid)} item={cItem.item} cartIndex={i}/>)}
       </Item.Group>
       <Divider />
       <h4>
