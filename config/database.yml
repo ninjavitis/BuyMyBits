@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: deployment_test_2_development
+  database: buy_my_bits
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: deployment_test_2_test
+  database: buy_my_bits
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: deployment_test_2_production
-  username: deployment_test_2
-  password: <%= ENV['DEPLOYMENT_TEST_2_DATABASE_PASSWORD'] %>
+  database: buy_my_bits_production
+  username: buy_my_bits
+  password: <%= ENV['BUY_MY_BITS_DATABASE_PASSWORD'] %>

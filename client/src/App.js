@@ -5,6 +5,7 @@ import home from './Components/Home'
 import Cart from './Components/Cart'
 import styled from 'styled-components'
 import Navbar from './Components/Navbar'
+import Login from "./Components/Login";
 
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
     <Container>
       <Switch>
         <Route exact path='/' component={home}/>
+        <Route exact path="/login" component={Login} />
         <Route exact path='/cart' component={Cart}/>
       </Switch>
     </Container>
