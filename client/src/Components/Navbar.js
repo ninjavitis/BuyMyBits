@@ -13,15 +13,22 @@ const menuContent =(
       {authenticated ? 
         <Link to='/logout'>
           <Menu.Item>
-            <Icon name='user'/>
+            <Icon name='user times'/>
           </Menu.Item>
         </Link>
         :
-        <Link to='/login'>
-          <Menu.Item name='Login'>
-            <Icon name='user outline'/>
-          </Menu.Item>
-        </Link>
+        <>
+          <Link to='/register'>
+            <Menu.Item name='Register'>
+              <Icon name='user plus'/>
+            </Menu.Item>
+          </Link>
+          <Link to='/login'>
+            <Menu.Item name='Login'>
+              <Icon name='user outline'/>
+            </Menu.Item>
+          </Link>
+        </>
       }
       <Link to='/cart'>
         <Menu.Item name='Checkout' >

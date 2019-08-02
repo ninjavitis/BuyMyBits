@@ -6,6 +6,8 @@ import Cart from './Components/Cart'
 import styled from 'styled-components'
 import Navbar from './Components/Navbar'
 import Login from "./Components/Login";
+import Register from "./Components/Register";
+import NoMatch from "./Components/NoMatch";
 
 
 const App = () => {
@@ -26,7 +28,9 @@ const App = () => {
       <Switch>
         <Route exact path='/' component={home}/>
         <Route exact path="/login" component={Login} />
+        <Route exact path='/register' component={Register} />
         <Route exact path='/cart' component={Cart}/>
+        <Route component={NoMatch} />
       </Switch>
     </Container>
     </AppContainer>
