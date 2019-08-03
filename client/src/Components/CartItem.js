@@ -11,14 +11,16 @@ const CartItem = ({item, cartIndex}) => {
       <Item>
         <Item.Image size='tiny' src={items[item].item.images.transparent}/>
         <Item.Content verticalAlign='middle'> 
-          <Item.Header ><h3>{items[item].name}</h3></Item.Header>
-          <Item.Meta>Quantity: {cart[cartIndex].quant} X Unit Price: ${convertPrice(items[item].cost)}  </Item.Meta>
+          <Item.Header as='h3'>{items[item].name}</Item.Header>
+          <Item.Meta>Quantity: {cart[cartIndex].quant}</Item.Meta>
+          <Item.Meta>Unit Price: ${convertPrice(items[item].cost)}  </Item.Meta>
           <Item.Description>{items[item].item.description}</Item.Description>
-          
-          <Button icon size='tiny' color='grey' onClick={()=>updateQuantity(cartIndex, 1)}><Icon name="plus"/></Button> 
-          <Button icon size='tiny' color='grey' onClick={()=>updateQuantity(cartIndex, -1)}><Icon name="minus"/></Button> 
-          <Button icon size='tiny' color='red' onClick={()=>removeFromCart(items[item].itemid)}><Icon name="cancel"/></Button> 
+          <Item.Extra>
+            <Button icon='minus' size='mini' color='grey' onClick={()=>updateQuantity(cartIndex, -1)} /> 
+            <Button icon='plus' size='mini' color='grey' onClick={()=>updateQuantity(cartIndex, 1)} /> 
+          </Item.Extra> 
         </Item.Content>
+          <Button icon='cancel' size='mini' color='red' onClick={()=>removeFromCart(items[item].itemid)} /> 
       </Item>
     </>
   )
