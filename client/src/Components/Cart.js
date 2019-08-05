@@ -11,7 +11,7 @@ const FloatingCart = () => {
   const itemPane = (
     <>
       <Header as='h1'>Cart</Header>
-      <Segment style={{overflow: 'auto', maxHeight: '45vh' }}>
+      <Segment style={{overflow: 'auto', maxHeight: '42vh' }}>
         <Item.Group divided>
           {cart.map((cItem,i)=><CartItem key={items[cItem.item].itemid} item={cItem.item} cartIndex={i}/>)}
         </Item.Group>
