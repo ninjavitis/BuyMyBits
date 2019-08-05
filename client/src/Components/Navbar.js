@@ -30,7 +30,7 @@ const menuContent =(
           </Link>
         </>
       }
-      <Link to='/cart'>
+      <Link to='/checkout'>
         <Menu.Item name='Checkout' >
           <Icon name='shopping cart'/>
           

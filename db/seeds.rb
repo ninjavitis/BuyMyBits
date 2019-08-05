@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+50.times do
+  Item.create(
+    sku: '00-000-0000',
+    name: Faker::Coffee.blend_name,
+    description: Faker::Coffee.notes,
+    image: Faker::LoremFlickr.grayscale_image(size: "200x200", search_terms: ['woodworking'])
+    )
+end

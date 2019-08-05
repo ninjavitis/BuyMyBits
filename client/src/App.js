@@ -2,7 +2,7 @@ import React from 'react';
 import {Switch, Route, } from 'react-router-dom'
 import {Container} from 'semantic-ui-react'
 import home from './Components/Home'
-import Cart from './Components/Cart'
+import Checkout from './Components/Checkout'
 import styled from 'styled-components'
 import Navbar from './Components/Navbar'
 import Login from "./Components/Login";
@@ -29,7 +29,7 @@ const App = () => {
         <Route exact path='/' component={home}/>
         <Route exact path="/login" component={Login} />
         <Route exact path='/register' component={Register} />
-        <Route exact path='/cart' component={Cart}/>
+        <Route exact path='/checkout' component={Checkout}/>
         <Route component={NoMatch} />
       </Switch>
     </Container>

@@ -10,10 +10,12 @@ const FloatingCart = () => {
 
   const itemPane = (
     <>
-      <Item.Group divided>
-        {cart.map((cItem,i)=><CartItem key={items[cItem.item].itemid} item={cItem.item} cartIndex={i}/>)}
-      </Item.Group>
-      <Divider />
+      <Segment style={{overflow: 'auto', maxHeight: '50vh' }}>
+        <Item.Group divided>
+          {cart.map((cItem,i)=><CartItem key={items[cItem.item].itemid} item={cItem.item} cartIndex={i}/>)}
+        </Item.Group>
+        <Divider />  
+      </Segment>
       <Segment textAlign='right'>
         <h4>
           Sub-total: ${subTotal().toFixed(2)}
@@ -28,9 +30,12 @@ const FloatingCart = () => {
           Total: ${Total().toFixed(2)}
         </h3>
       </Segment>
-      <Button floated="right">Checkout</Button>
+      <Segment textAlign='right'>
+        <Button color='green'>Checkout</Button>
+      </Segment>
     </>
   )
+
 
   const emptyCart = (
     <Segment placeholder>
@@ -39,13 +44,13 @@ const FloatingCart = () => {
         Your cart is empty, add some bits!
       </Header>
       <Link to="/">
-        <Button textAlign='center' color='blue'>Take me to the bits!</Button>
+        <Button color='blue'>Take me to the bits!</Button>
       </Link>
     </Segment>
   )
 
   return(
-    <Segment style={{overflow: 'auto', maxHeight: '90vh' }}>
+    <Segment style={{maxHeight: '90vh' }}>
       <h1>Cart</h1>
       <Divider />
       {cart.length > 0?

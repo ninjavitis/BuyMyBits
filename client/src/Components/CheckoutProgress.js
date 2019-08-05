@@ -1,11 +1,9 @@
-import React, {useState} from 'react';
-import {Menu, Segment} from 'semantic-ui-react'
-import Cart from './Cart'
+import React from 'react';
+import {Menu, Section} from 'semantic-ui-react'
 
 const Checkout = () => {
-  const [step, setStep] = useState(1)
 
-  const Progress = (
+  const progress = (
     <Menu>
       <Menu.Item>Cart</Menu.Item>
       <Menu.Item>Shipping Address</Menu.Item>
@@ -16,11 +14,9 @@ const Checkout = () => {
   )
 
   return (
-    <Segment  >
-      {Progress}
-      <Cart/>
-
-    </Segment>
+    <Segment style={{overflow: 'auto', maxHeight: '90vh' }} >
+      {progress}
+    </>
 
 
   );
