@@ -10,6 +10,7 @@ const FloatingCart = () => {
 
   const itemPane = (
     <>
+      <Header as='h1'>Cart</Header>
       <Segment style={{overflow: 'auto', maxHeight: '50vh' }}>
         <Item.Group divided>
           {cart.map((cItem,i)=><CartItem key={items[cItem.item].itemid} item={cItem.item} cartIndex={i}/>)}
@@ -51,8 +52,6 @@ const FloatingCart = () => {
 
   return(
     <Segment style={{maxHeight: '90vh' }}>
-      <h1>Cart</h1>
-      <Divider />
       {cart.length > 0?
         itemPane
         :
