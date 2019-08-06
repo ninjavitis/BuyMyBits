@@ -20,7 +20,7 @@ const FloatingCart = () => {
   const StripeButton = ()=>{
     return(
         <StripeCheckout 
-          amount={500}
+          amount={Total()*100}
           billingAddress
           description="Buy My Bits"
           locale="auto"
