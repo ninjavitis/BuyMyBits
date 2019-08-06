@@ -1,9 +1,16 @@
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
 import {Menu, Segment} from 'semantic-ui-react'
 import Cart from './Cart'
+import {ShopContext} from '../Providers/ShopProvider'
+
+// Stripe 
+import {Elements} from 'react-stripe-elements';
+import CheckoutForm from './CheckoutForm'
+
+
 
 const Checkout = () => {
-  const [step, setStep] = useState(1)
+  const {checkoutStep} = useContext(ShopContext)
 
   const Progress = (
     <Menu>
@@ -15,14 +22,27 @@ const Checkout = () => {
     </Menu>
   )
 
+  const StripeForm = ()=>{
+    return(
+      <Elements>
+        <CheckoutForm />
+      </Elements>
+    )
+  }
+
+  const Main = ()=>{
+    switch(checkoutStep){
+      case 1: return <Cart />
+      case 2: return <StripeForm />
+      default: return null
+    }
+  }
+
   return (
     <Segment  >
       {Progress}
-      <Cart/>
-
+      <Main />
     </Segment>
-
-
   );
 }
 

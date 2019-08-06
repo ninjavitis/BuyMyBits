@@ -9,6 +9,7 @@ export class ShopProvider extends React.Component {
   state = { 
     items: [],
     cart: [],
+    checkoutStep: 1,
     conversionRate: 400,
     digitalFee: 7.50,
     minFee: 0.00,
@@ -16,6 +17,10 @@ export class ShopProvider extends React.Component {
 
   componentDidMount(){
     this.getItems();
+  }
+
+  setCheckoutStep=(step)=>{
+    this.setState({checkoutStep:step})
   }
 
   addToCart = (item) => {
@@ -99,6 +104,7 @@ export class ShopProvider extends React.Component {
       subTotal: this.subTotal,
       deliveryFee: this.deliveryFee,
       Total: this.Total,
+      setCheckoutStep: this.setCheckoutStep,
     }}>
       {this.props.children}
     </ShopContext.Provider>

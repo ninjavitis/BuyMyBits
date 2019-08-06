@@ -5,8 +5,15 @@ import CartItem from './CartItem'
 import {ShopContext} from '../Providers/ShopProvider'
 
 const FloatingCart = () => {
-  const {items,cart, totalQuantity, deliveryFee, subTotal, Total} = useContext(ShopContext)
-
+  const {
+    items, 
+    cart, 
+    totalQuantity, 
+    deliveryFee, 
+    subTotal, 
+    Total, 
+    setCheckoutStep,
+  } = useContext(ShopContext)
 
   const itemPane = (
     <>
@@ -32,7 +39,7 @@ const FloatingCart = () => {
         </h3>
       </Segment>
       <Segment textAlign='right'>
-        <Button color='green'>Checkout</Button>
+        <Button color='green' onClick={()=>setCheckoutStep(2)}>Checkout</Button>
       </Segment>
     </>
   )
