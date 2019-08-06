@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {CardElement, injectStripe} from 'react-stripe-elements';
 
-class CheckoutForm extends Component {
+class PaymentForm extends Component {
   constructor(props) {
     super(props);
     this.submit = this.submit.bind(this);
@@ -22,4 +22,4 @@ class CheckoutForm extends Component {
   }
 }
 
-export default injectStripe(CheckoutForm);
+export default injectStripe(PaymentForm);

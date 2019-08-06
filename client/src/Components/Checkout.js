@@ -5,12 +5,12 @@ import {ShopContext} from '../Providers/ShopProvider'
 
 // Stripe 
 import {Elements} from 'react-stripe-elements';
-import CheckoutForm from './CheckoutForm'
+import PaymentForm from './PaymentForm'
 
 
 
 const Checkout = () => {
-  const {checkoutStep} = useContext(ShopContext)
+  const {checkoutStep,} = useContext(ShopContext)
 
   const Progress = (
     <Menu>
@@ -22,26 +22,12 @@ const Checkout = () => {
     </Menu>
   )
 
-  const StripeForm = ()=>{
-    return(
-      <Elements>
-        <CheckoutForm />
-      </Elements>
-    )
-  }
 
-  const Main = ()=>{
-    switch(checkoutStep){
-      case 1: return <Cart />
-      case 2: return <StripeForm />
-      default: return null
-    }
-  }
 
   return (
     <Segment  >
       {Progress}
-      <Main />
+      <Cart />
     </Segment>
   );
 }

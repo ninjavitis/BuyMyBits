@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom'
 import {Segment, Divider, Item, Button, Header, Icon} from 'semantic-ui-react'
 import CartItem from './CartItem'
 import {ShopContext} from '../Providers/ShopProvider'
+import StripeCheckout from 'react-stripe-checkout';
+
 
 const FloatingCart = () => {
   const {
@@ -12,8 +14,23 @@ const FloatingCart = () => {
     deliveryFee, 
     subTotal, 
     Total, 
-    setCheckoutStep,
+    onToken,
   } = useContext(ShopContext)
+
+  const StripeButton = ()=>{
+    return(
+        <StripeCheckout 
+          amount={500}
+          billingAddress
+          description="Buy My Bits"
+          locale="auto"
+          name="buy-my-bits.herokuapp.com"
+          stripeKey="pk_test_rX64QqpNMyGPDdHjzgkth56T00vFkUhTX2"
+          token={onToken}
+          zipcode
+        />
+    )
+  }
 
   const itemPane = (
     <>
@@ -39,10 +56,11 @@ const FloatingCart = () => {
         </h3>
       </Segment>
       <Segment textAlign='right'>
-        <Button color='green' onClick={()=>setCheckoutStep(2)}>Checkout</Button>
+      <StripeButton />
       </Segment>
     </>
   )
+
 
 
   const emptyCart = (
