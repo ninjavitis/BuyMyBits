@@ -45,6 +45,7 @@ const menuContent =(
     <Link to='/'>
       <Menu.Item header >Buy My Bits</Menu.Item>
     </Link>
+      <Menu.Item header>WORK IN PROGRESS - FOR DEMONSTRATION ONLY</Menu.Item>
     {menuContent}
   </Menu>
   )
