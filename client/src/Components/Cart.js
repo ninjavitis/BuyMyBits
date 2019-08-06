@@ -22,9 +22,9 @@ const FloatingCart = () => {
         <StripeCheckout 
           amount={Total()*100}
           billingAddress
-          description="Buy My Bits"
+          description="TEST ONLY"
           locale="auto"
-          name="buy-my-bits.herokuapp.com"
+          name="DO NOT ENTER REAL INFO"
           stripeKey="pk_test_rX64QqpNMyGPDdHjzgkth56T00vFkUhTX2"
           token={onToken}
           zipcode
@@ -42,21 +42,17 @@ const FloatingCart = () => {
         <Divider />  
       </Segment>
       <Segment textAlign='right'>
-        <h4>
-          Sub-total: ${subTotal().toFixed(2)}
-        </h4>
-        <h4>
-          Digital Delivery Fee / Item: ${(deliveryFee() / totalQuantity()).toFixed(2)} 
-        </h4>
-        <h5>
-          (${deliveryFee().toFixed(2)})
-        </h5>
-        <h3>
-          Total: ${Total().toFixed(2)}
-        </h3>
+        <Item>
+          <Item.Content textAlign="right">
+            <Item.Meta>Sub-total: ${subTotal().toFixed(2)}</Item.Meta>
+            <Item.Meta>Digital Delivery Fee / Item: ${(deliveryFee() / totalQuantity()).toFixed(2)}</Item.Meta>
+            <Item.Meta>Total Delivery Fee: ${deliveryFee().toFixed(2)}</Item.Meta>
+            <Item.Header as='h3'>Total: ${Total().toFixed(2)}</Item.Header>
+          </Item.Content>
+        </Item>
       </Segment>
-      <Segment textAlign='right'>
-      <StripeButton />
+      <Segment basic textAlign='right'>
+        <StripeButton />
       </Segment>
     </>
   )
