@@ -41,11 +41,14 @@ const FloatingCart = () => {
         </Item.Group>
         <Divider />  
       </Segment>
+      <Segment textAlign="center">
+        <Header as='h5'>Delivery Fee per Item: ${(deliveryFee() / totalQuantity()).toFixed(2)}</Header>
+        <Header as='h6'>Add more bits to your cart to reduce the per item fee!</Header>
+      </Segment>
       <Segment textAlign='right'>
         <Item>
           <Item.Content textAlign="right">
             <Item.Meta>Sub-total: ${subTotal().toFixed(2)}</Item.Meta>
-            <Item.Meta>Digital Delivery Fee / Item: ${(deliveryFee() / totalQuantity()).toFixed(2)}</Item.Meta>
             <Item.Meta>Total Delivery Fee: ${deliveryFee().toFixed(2)}</Item.Meta>
             <Item.Header as='h3'>Total: ${Total().toFixed(2)}</Item.Header>
           </Item.Content>
