@@ -23,10 +23,6 @@ export class ShopProvider extends React.Component {
     this.setState({checkoutStep:step})
   }
 
-  onToken=()=>{
-
-  }
-
   addToCart = (item) => {
     // TODO
     // 1. Check to see if the item is in the cart
@@ -109,7 +105,6 @@ export class ShopProvider extends React.Component {
       deliveryFee: this.deliveryFee,
       Total: this.Total,
       setCheckoutStep: this.setCheckoutStep,
-      onToken: this.onToken,
     }}>
       {this.props.children}
     </ShopContext.Provider>

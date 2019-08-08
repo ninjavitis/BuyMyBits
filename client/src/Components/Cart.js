@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import {Link} from 'react-router-dom'
+import axios from "axios";
 import {Segment, Divider, Item, Button, Header, Icon} from 'semantic-ui-react'
 import CartItem from './CartItem'
 import {ShopContext} from '../Providers/ShopProvider'
@@ -14,7 +15,6 @@ const FloatingCart = () => {
     deliveryFee, 
     subTotal, 
     Total, 
-    onToken,
   } = useContext(ShopContext)
 
   const StripeButton = ()=>{
@@ -31,6 +31,22 @@ const FloatingCart = () => {
         />
     )
   }
+
+  const onToken = token =>{
+      const body = {
+        amount: Total()*100,
+        token: token
+      };  
+    axios.post("http://localhost:8000/", body)
+        .then(response => {
+          console.log(response);
+          alert("Payment Success");
+        })
+        .catch(error => {
+          console.log("Payment Error: ", error);
+          alert("Payment Error");
+        });
+    };
 
   const itemPane = (
     <>
