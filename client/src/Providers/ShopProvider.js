@@ -11,7 +11,7 @@ export class ShopProvider extends React.Component {
     cart: [],
     checkoutStep: 1,
     conversionRate: 400,
-    digitalFee: 7.50,
+    digitalFee: 5.00,
     minFee: 0.00,
    };
 
@@ -23,23 +23,39 @@ export class ShopProvider extends React.Component {
     this.setState({checkoutStep:step})
   }
 
+  // If the cart is empty, adds a new item
+  // If not empty checks to see if the item is already in the cart
+  // If so, it increments the quantity
+  // If not, it adds it as a new item
   addToCart = (item) => {
-    // TODO
-    // 1. Check to see if the item is in the cart
-    // 2. If so increment the quantity (call update quantity function)
-    // 3. If not, add it as a new item
-
-    this.setState({cart:[...this.state.cart, {item:item, quant:1}]})
+    if(this.state.cart.length === 0)
+    {
+      this.setState({cart:[...this.state.cart, {item:item, quant:1}]})
+    }
+    else
+    {
+      this.state.cart.forEach((cItem, i)=>{
+        console.log(cItem.item + ' : ' + item)
+        if(cItem.item === item)
+        {
+          this.updateQuantity(i, 1)
+        }
+        else
+        {
+          this.setState({cart:[...this.state.cart, {item:item, quant:1}]})
+        }
+      })
+    }
   }
 
+  // 1. Increment or decrement quantity
+  // 2. If quantity is 0 call removeFromCart
   updateQuantity=(cartIndex, change)=>{
     if (this.state.cart[cartIndex].quant + change > 0){
       this.setState({
         cart: update(this.state.cart, {[cartIndex]: {quant: {$set: this.state.cart[cartIndex].quant + change}}})
       })
     }
-    // 1. Increment or decrement quantity
-    // 2. If quantity is 0 call removeFromCart
   }
 
   // This is funky because the cart only stores item array indexes (prevents needing to pass the object around)
@@ -53,14 +69,18 @@ export class ShopProvider extends React.Component {
     })
   }
 
+  // removes all items from cart
   emptyCart = () => {
     this.setState({cart:[]})
   }
 
+  // this is used to convert the price value stored in the api into dollars
+  // only used with the fortnite api data, will be deprecated 
   convertPrice=(value)=>{
     return (parseFloat(value) / this.state.conversionRate).toFixed(2)
   }
 
+  // returns the total price of all the items in the cart plus any fees
   Total=()=>{
     return this.subTotal() + this.deliveryFee()
   }
@@ -82,10 +102,13 @@ export class ShopProvider extends React.Component {
     return subT
   }
 
+  // used to ensure that no fee is charged if the cart is empty
+  // user should never see fee info displayed in an empty cart
   deliveryFee=()=>{
     return this.state.cart.length > 0? this.state.digitalFee : this.state.minFee
   }
 
+  // makes an api call to get the items available for purchase
   getItems = ()=>{
     axios.get(`https://fortnite-public-api.theapinetwork.com/store/get`)
     .then(res=> this.setState({items:res.data.items}))

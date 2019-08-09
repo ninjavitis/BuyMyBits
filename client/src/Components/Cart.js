@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {Link} from 'react-router-dom'
 import axios from "axios";
-import {Segment, Divider, Item, Button, Header, Icon} from 'semantic-ui-react'
+import {Segment, Item, Button, Header, Icon} from 'semantic-ui-react'
 import CartItem from './CartItem'
 import {ShopContext} from '../Providers/ShopProvider'
 import StripeCheckout from 'react-stripe-checkout';
@@ -55,7 +55,6 @@ const FloatingCart = () => {
         <Item.Group divided>
           {cart.map((cItem,i)=><CartItem key={items[cItem.item].itemid} item={cItem.item} cartIndex={i}/>)}
         </Item.Group>
-        <Divider />  
       </Segment>
       <Segment textAlign="center">
         <Header as='h5'>Delivery Fee per Item: ${(deliveryFee() / totalQuantity()).toFixed(2)}</Header>

@@ -10,16 +10,12 @@ import PaymentForm from './PaymentForm'
 
 
 const Checkout = () => {
-  const {checkoutStep,} = useContext(ShopContext)
-
   const Progress = (
     <Menu>
       <Menu.Item>Cart</Menu.Item>
       <Menu.Item>Complete</Menu.Item>
     </Menu>
   )
-
-
 
   return (
     <Segment  >

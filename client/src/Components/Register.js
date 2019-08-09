@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import { AuthContext } from "../Providers/AuthProvider";
-import { Button, Form, Segment, Header, } from 'semantic-ui-react';
+import { Form, Segment, Header, } from 'semantic-ui-react';
 
 
 const Register = (props) => {
