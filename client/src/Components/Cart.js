@@ -7,7 +7,7 @@ import {ShopContext} from '../Providers/ShopProvider'
 import StripeCheckout from 'react-stripe-checkout';
 
 
-const FloatingCart = () => {
+const Cart = () => {
   const {
     items, 
     cart, 
@@ -20,7 +20,7 @@ const FloatingCart = () => {
   const StripeButton = ()=>{
     return(
         <StripeCheckout 
-          amount={Total()*100}
+          amount={Total*100}
           billingAddress
           description="TEST ONLY"
           locale="auto"
@@ -53,19 +53,19 @@ const FloatingCart = () => {
       <Header as='h1'>Cart</Header>
       <Segment style={{overflow: 'auto', maxHeight: '40vh' }}>
         <Item.Group divided>
-          {cart.map((cItem,i)=><CartItem key={items[cItem.item].itemid} item={cItem.item} cartIndex={i}/>)}
+          {cart.map((cItem,i)=><CartItem key={cItem.item} item={cItem.item} cartIndex={i}/>)}
         </Item.Group>
       </Segment>
       <Segment textAlign="center">
-        <Header as='h5'>Delivery Fee per Item: ${(deliveryFee() / totalQuantity()).toFixed(2)}</Header>
+        <Header as='h5'>Delivery Fee per Item: ${deliveryFee / totalQuantity}</Header>
         <Header as='h6'>Add more bits to your cart to reduce the per item fee!</Header>
       </Segment>
       <Segment textAlign='right'>
         <Item>
           <Item.Content textAlign="right">
-            <Item.Meta>Sub-total: ${subTotal().toFixed(2)}</Item.Meta>
-            <Item.Meta>Total Delivery Fee: ${deliveryFee().toFixed(2)}</Item.Meta>
-            <Item.Header as='h3'>Total: ${Total().toFixed(2)}</Item.Header>
+            <Item.Meta>Sub-total: ${subTotal}</Item.Meta>
+            <Item.Meta>Total Delivery Fee: ${deliveryFee}</Item.Meta>
+            <Item.Header as='h3'>Total: ${Total}</Item.Header>
           </Item.Content>
         </Item>
       </Segment>
@@ -100,4 +100,4 @@ const FloatingCart = () => {
   )
 };
 
-export default FloatingCart;
+export default Cart;

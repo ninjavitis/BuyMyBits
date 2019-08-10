@@ -5,7 +5,7 @@ import {ShopContext} from '../Providers/ShopProvider'
 const Items = () => {
   const {items, conversionRate, addToCart} = useContext(ShopContext)
 
-  const ItemDisplay =({name,desc,image,cost,index})=>(
+  const ItemDisplay =({name,desc,image,cost,index, id})=>(
     <Card>
       <Image src={image}></Image>
       <Card.Content>
@@ -15,7 +15,7 @@ const Items = () => {
       <Card.Content extra textAlign='center'>
         <Button as='div' labelPosition='left'>
           <Label as='a' basic pointing='right'>$ {(parseFloat(cost) / conversionRate).toFixed(2)}</Label>
-          <Button icon color='green' onClick={()=>addToCart(index)}><Icon name='dollar sign'/>Buy These Bits</Button>
+          <Button icon color='green' onClick={()=>addToCart(id)}><Icon name='dollar sign'/>Buy These Bits</Button>
         </Button>
       </Card.Content>
     </Card>
@@ -25,6 +25,7 @@ const Items = () => {
     <Card.Group stackable itemsPerRow={4}>
       {items.map((item,i)=><ItemDisplay 
         key={item.itemid}
+        id={item.itemid}
         index={i}
         name={item.name}
         desc={item.description}

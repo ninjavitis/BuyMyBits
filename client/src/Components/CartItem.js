@@ -4,15 +4,15 @@ import {ShopContext} from '../Providers/ShopProvider'
 
 
 const CartItem = ({item, cartIndex}) => {
-  const {items, cart, updateQuantity, convertPrice, removeFromCart} = useContext(ShopContext)
+  const {items, cart, updateQuantity, convertPrice, removeFromCart, findInItems} = useContext(ShopContext)
 
   return(
     <>
       <Item>
-        <Item.Image size='tiny' src={items[item].item.images.transparent}/>
+        <Item.Image size='tiny' src={items[findInItems(item)].item.images.transparent}/>
         <Item.Content verticalAlign='middle'> 
-          <Item.Header as='h3'>{items[item].name}</Item.Header>
-          <Item.Meta>Unit Price: ${convertPrice(items[item].cost)}  </Item.Meta>
+          <Item.Header as='h3'>{items[findInItems(item)].name}</Item.Header>
+          <Item.Meta>Unit Price: ${convertPrice(items[findInItems(item)].cost)}  </Item.Meta>
           <Item.Meta>
             Quantity: {cart[cartIndex].quant}
             <Button icon='minus' size='mini' color='grey' onClick={()=>updateQuantity(cartIndex, -1)} /> 

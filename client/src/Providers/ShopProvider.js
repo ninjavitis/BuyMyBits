@@ -11,8 +11,11 @@ export class ShopProvider extends React.Component {
     cart: [],
     checkoutStep: 1,
     conversionRate: 400,
-    digitalFee: 5.00,
+    deliveryFee: 5.00,
     minFee: 0.00,
+    subTotal:0.00,
+    Total:0.00,
+    totalQuantity:0.00,
    };
 
   componentDidMount(){
@@ -27,29 +30,24 @@ export class ShopProvider extends React.Component {
   // If not empty checks to see if the item is already in the cart
   // If so, it increments the quantity
   // If not, it adds it as a new item
-  addToCart = (item) => {
-    if(this.state.cart.length === 0)
+  addToCart = (itemId) => {
+    // console.log(item)
+    // console.log(this.state.cart)
+    let cartIndex = null
+    cartIndex = this.findInCart(itemId)
+    if (cartIndex !== null)
     {
-      this.setState({cart:[...this.state.cart, {item:item, quant:1}]})
+      this.updateQuantity(cartIndex, 1)
     }
     else
     {
-      this.state.cart.forEach((cItem, i)=>{
-        console.log(cItem.item + ' : ' + item)
-        if(cItem.item === item)
-        {
-          this.updateQuantity(i, 1)
-        }
-        else
-        {
-          this.setState({cart:[...this.state.cart, {item:item, quant:1}]})
-        }
-      })
+      this.setState({cart:[...this.state.cart, {item:itemId, quant:1}]})
     }
   }
-
+  
   // 1. Increment or decrement quantity
   // 2. If quantity is 0 call removeFromCart
+  // uses cart immutability helper
   updateQuantity=(cartIndex, change)=>{
     if (this.state.cart[cartIndex].quant + change > 0){
       this.setState({
@@ -60,7 +58,7 @@ export class ShopProvider extends React.Component {
 
   // This is funky because the cart only stores item array indexes (prevents needing to pass the object around)
   // So I have to do the extra step of looking up the itemid in the items array
-  // This is largely a side-effect of using data from an API.  With my own custom back end I could do the individual DB queries necessary
+  // This is largely a side-effect of using data from an API.  With my own custom backend I could do the individual DB queries necessary
   removeFromCart=(id)=>{    
     this.setState({cart:
       this.state.cart.filter(item=> {
@@ -80,6 +78,30 @@ export class ShopProvider extends React.Component {
     return (parseFloat(value) / this.state.conversionRate).toFixed(2)
   }
 
+  // Returns the item array index of the object matching a given item id
+  findInItems=(itemId)=>{
+    let index
+    this.state.items.forEach((item,i)=>{
+      if(item.itemid === itemId)
+      {
+        index = i
+      }
+    })
+    return index
+  }
+
+  findInCart=(itemId)=>{
+    let index = null
+
+    this.state.cart.forEach((item,i)=>{
+      if(item.item === itemId)
+      {
+        index = i
+      }
+    })
+    return index
+  }
+
   // returns the total price of all the items in the cart plus any fees
   Total=()=>{
     return this.subTotal() + this.deliveryFee()
@@ -95,17 +117,19 @@ export class ShopProvider extends React.Component {
   // Calculates the subtotal before tax +shipping
   subTotal=()=>{
     let subT = 0.0
-
     this.state.cart.forEach(cItem => {
-      subT += parseFloat((this.state.items[cItem.item].cost / this.state.conversionRate)* cItem.quant)
+      console.log('item index:'+this.findInItems(cItem.item))
+      subT += parseFloat((this.state.items[this.findInItems(cItem.item)].cost / this.state.conversionRate)* cItem.quant)
     });
     return subT
   }
 
+
+
   // used to ensure that no fee is charged if the cart is empty
   // user should never see fee info displayed in an empty cart
   deliveryFee=()=>{
-    return this.state.cart.length > 0? this.state.digitalFee : this.state.minFee
+    return this.state.cart.length > 0? this.state.deliveryFee : this.state.minFee
   }
 
   // makes an api call to get the items available for purchase
@@ -118,15 +142,12 @@ export class ShopProvider extends React.Component {
    return(
     <ShopContext.Provider value ={{
       ...this.state,
+      findInItems: this.findInItems,
       addToCart: this.addToCart,
       removeFromCart: this.removeFromCart,
       emptyCart: this.emptyCart,
       updateQuantity: this.updateQuantity,
-      totalQuantity: this.totalQuantity,
       convertPrice: this.convertPrice,
-      subTotal: this.subTotal,
-      deliveryFee: this.deliveryFee,
-      Total: this.Total,
       setCheckoutStep: this.setCheckoutStep,
     }}>
       {this.props.children}
