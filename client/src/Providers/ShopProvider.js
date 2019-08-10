@@ -11,11 +11,8 @@ export class ShopProvider extends React.Component {
     cart: [],
     checkoutStep: 1,
     conversionRate: 400,
-    deliveryFee: 5.00,
+    digitalFee: 5.00,
     minFee: 0.00,
-    subTotal:0.00,
-    Total:0.00,
-    totalQuantity:0.00,
    };
 
   componentDidMount(){
@@ -124,12 +121,10 @@ export class ShopProvider extends React.Component {
     return subT
   }
 
-
-
   // used to ensure that no fee is charged if the cart is empty
   // user should never see fee info displayed in an empty cart
   deliveryFee=()=>{
-    return this.state.cart.length > 0? this.state.deliveryFee : this.state.minFee
+    return this.state.cart.length > 0? this.state.digitalFee : this.state.minFee
   }
 
   // makes an api call to get the items available for purchase
@@ -149,6 +144,10 @@ export class ShopProvider extends React.Component {
       updateQuantity: this.updateQuantity,
       convertPrice: this.convertPrice,
       setCheckoutStep: this.setCheckoutStep,
+      Total: this.Total,
+      subTotal: this.subTotal,
+      deliveryFee: this.deliveryFee,
+      totalQuantity: this.totalQuantity
     }}>
       {this.props.children}
     </ShopContext.Provider>
