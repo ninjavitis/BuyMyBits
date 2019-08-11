@@ -84,7 +84,7 @@ const Cart = () => {
         Your cart is empty, add some bits!
       </Header>
       <Link to="/">
-        <Button color='blue'>Take me to the bits!</Button>
+        <Button size="massive" color='blue'>Take me to the bits!</Button>
       </Link>
     </Segment>
   )

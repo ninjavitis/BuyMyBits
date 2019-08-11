@@ -59,7 +59,7 @@ export class ShopProvider extends React.Component {
   removeFromCart=(id)=>{    
     this.setState({cart:
       this.state.cart.filter(item=> {
-        return this.state.items[item.item].itemid !== id
+        return this.state.cart[item].item !== id
       })
     })
   }

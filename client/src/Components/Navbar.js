@@ -41,13 +41,17 @@ const menuContent =(
 )
 
   return(
-  <Menu inverted>
-    <Link to='/'>
-      <Menu.Item header >Buy My Bits</Menu.Item>
-    </Link>
-      <Menu.Item header>WORK IN PROGRESS - FOR DEMONSTRATION ONLY</Menu.Item>
-    {menuContent}
-  </Menu>
+    <>
+      <Menu inverted>
+        <Link to='/'>
+          <Menu.Item header >Buy My Bits</Menu.Item>
+        </Link>
+        {menuContent}
+        <Menu.Menu>
+          <Menu.Item header>WORK IN PROGRESS - FOR DEMONSTRATION ONLY</Menu.Item>
+        </Menu.Menu>
+        </Menu>
+    </>
   )
 };
 
