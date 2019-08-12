@@ -10,8 +10,8 @@ const Register = (props) => {
   const [password, setPassword] = useState('')
   const [passConf, setPassConf] = useState('')
 
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
+  const [first_name, setFirstName] = useState('')
+  const [last_name, setLastName] = useState('')
   const [address_1, setAddress_1] = useState('')
   const [address_2, setAddress_2] = useState('')
   const [city, setCity] = useState('')
@@ -21,10 +21,11 @@ const Register = (props) => {
 
   const handleSubmit = (e) => {
     if(password === passConf){
-      handleRegister({email, password, passConf, firstName, lastName, address_1, address_2, city, state, zip})
+      handleRegister({email, password, first_name, last_name, address_1, address_2, city, state, zip})
     } else {
-      // TODO handle password mismatch
+      alert('Passwords must match')
     }
+    props.history.push('/')
   }
 
   return (
@@ -60,14 +61,14 @@ const Register = (props) => {
           <Form.Input 
             label='First Name'
             name='first_name'
-            value={firstName}
+            value={first_name}
             placeholder='First Name'
             onChange={(e)=>setFirstName(e.target.value)}
           />
           <Form.Input 
             label='Last Name'
             name='last_name'
-            value={lastName}
+            value={last_name}
             placeholder='Last Name'
             onChange={(e)=>setLastName(e.target.value)}
           />
@@ -92,21 +93,21 @@ const Register = (props) => {
               name='city'
               value={city}
               placeholder='Pleasantville'
-              onChange={(e)=>city(e.target.value)}
+              onChange={(e)=>setCity(e.target.value)}
               />
             <Form.Input 
               label='State'
               name='state'
               value={state}
               placeholder='NC'
-              onChange={(e)=>state(e.target.value)}
+              onChange={(e)=>setState(e.target.value)}
               />
             <Form.Input 
               label='Zip Code'
               name='zip'
               value={zip}
               placeholder='995599'
-              onChange={(e)=>zip(e.target.value)}
+              onChange={(e)=>setZip(e.target.value)}
               />
           </Form.Group>
         <Form.Button>Submit</Form.Button>
