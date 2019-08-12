@@ -8,6 +8,8 @@ import Navbar from './Components/Navbar'
 import Login from "./Components/Login";
 import Register from "./Components/Register";
 import NoMatch from "./Components/NoMatch";
+import FetchUser from './Components/FetchUser';
+
 
 
 const App = () => {
@@ -24,6 +26,7 @@ const App = () => {
   return(
     <AppContainer style={{height:'100vh'}}>
     <Navbar />
+    <FetchUser>
     <Container>
       <Switch>
         <Route exact path='/' component={home}/>
@@ -33,6 +36,7 @@ const App = () => {
         <Route component={NoMatch} />
       </Switch>
     </Container>
+    </FetchUser>
     </AppContainer>
   )
 }

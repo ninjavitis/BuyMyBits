@@ -3,19 +3,18 @@ import {Menu,Icon,} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import {AuthContext} from '../Providers/AuthProvider'
 
-const Navbar = () => {
+const Navbar = (props) => {
 
-  const {authenticated} = useContext(AuthContext)
+  const {authenticated, handleLogout} = useContext(AuthContext)
 
 const menuContent =(
   <>
     <Menu.Menu position='right'>
       {authenticated ? 
-        <Link to='/logout'>
-          <Menu.Item>
+          <Menu.Item onClick={()=>handleLogout(props.history)}>
             <Icon name='user times'/>
+            Sign Out
           </Menu.Item>
-        </Link>
         :
         <>
           <Link to='/register'>
