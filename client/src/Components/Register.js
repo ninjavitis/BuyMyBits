@@ -46,6 +46,7 @@ const Register = (props) => {
           name='password'
           value={password}
           placeholder='password'
+          type="password"
           onChange={(e)=>setPassword(e.target.value)}
           required
         />
@@ -54,6 +55,7 @@ const Register = (props) => {
           name='passwordConfirmation'
           value={passConf}
           placeholder='Password'
+          type="password"
           onChange={(e)=>setPassConf(e.target.value)}
           required
         />
