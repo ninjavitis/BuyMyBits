@@ -5,6 +5,7 @@ import home from './Components/Home'
 import Checkout from './Components/Checkout'
 import styled from 'styled-components'
 import Navbar from './Components/Navbar'
+import FootBar from './Components/FootBar'
 import Login from "./Components/Login";
 import Register from "./Components/Register";
 import NoMatch from "./Components/NoMatch";
@@ -23,20 +24,29 @@ const App = () => {
     );
   `;
 
+    const Footer = styled.div`
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  `;
+
   return(
-    <AppContainer style={{height:'100vh'}}>
-    <Navbar />
-    <FetchUser>
-    <Container>
-      <Switch>
-        <Route exact path='/' component={home}/>
-        <Route exact path="/login" component={Login} />
-        <Route exact path='/register' component={Register} />
-        <Route exact path='/checkout' component={Checkout}/>
-        <Route component={NoMatch} />
-      </Switch>
-    </Container>
-    </FetchUser>
+    <AppContainer style={{height:'120vh'}}>
+      <Navbar />
+      <FetchUser>
+      <Container>
+        <Switch>
+          <Route exact path='/' component={home}/>
+          <Route exact path="/login" component={Login} />
+          <Route exact path='/register' component={Register} />
+          <Route exact path='/checkout' component={Checkout}/>
+          <Route component={NoMatch} />
+        </Switch>
+      </Container>
+      <Footer>
+        <FootBar/>
+      </Footer>
+      </FetchUser>
     </AppContainer>
   )
 }

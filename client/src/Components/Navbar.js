@@ -1,20 +1,23 @@
 import React,{useContext} from 'react';
-import {Menu,Icon,} from 'semantic-ui-react'
+import {Menu,Icon, Dropdown,} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import {AuthContext} from '../Providers/AuthProvider'
+import ConnectedFetchUser from './FetchUser';
 
 const Navbar = (props) => {
 
-  const {authenticated, handleLogout} = useContext(AuthContext)
+  const {authenticated, handleLogout, user} = useContext(AuthContext)
+
 
 const menuContent =(
   <>
-    <Menu.Menu position='right'>
+    <Menu.Menu position='right' >
       {authenticated ? 
-          <Menu.Item onClick={()=>handleLogout(props.history)}>
-            <Icon name='user times'/>
-            Sign Out
-          </Menu.Item>
+            <Dropdown icon='user' text={'Welcome, '+ user.first_name +'!'} pointing className='link item' >
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={()=>handleLogout(props.history)}>Logout</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
         :
         <>
           <Link to='/register'>
@@ -32,7 +35,7 @@ const menuContent =(
       <Link to='/checkout'>
         <Menu.Item name='Checkout' >
           <Icon name='shopping cart'/>
-          
+          Cart
         </Menu.Item>
       </Link>
     </Menu.Menu>
@@ -46,10 +49,7 @@ const menuContent =(
           <Menu.Item header >Buy My Bits</Menu.Item>
         </Link>
         {menuContent}
-        <Menu.Menu>
-          <Menu.Item header>WORK IN PROGRESS - FOR DEMONSTRATION ONLY</Menu.Item>
-        </Menu.Menu>
-        </Menu>
+      </Menu>
     </>
   )
 };

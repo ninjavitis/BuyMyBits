@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import { AuthContext } from "../Providers/AuthProvider";
-import { Form, Segment, Header, } from 'semantic-ui-react';
+import { Form, Segment, Header, Button, Icon} from 'semantic-ui-react';
 
 
 const Register = (props) => {
@@ -41,6 +41,7 @@ const Register = (props) => {
           required
           autoFocus
         />
+      
         <Form.Input 
           label='Password'
           name='password'
@@ -49,6 +50,8 @@ const Register = (props) => {
           type="password"
           onChange={(e)=>setPassword(e.target.value)}
           required
+          action={{ color: 'grey', labelPosition: 'left', icon: 'eye', content:'show'}}
+          actionPosition='left'
         />
         <Form.Input 
           label='Confirm Password'
@@ -66,6 +69,7 @@ const Register = (props) => {
             value={first_name}
             placeholder='First Name'
             onChange={(e)=>setFirstName(e.target.value)}
+            required
           />
           <Form.Input 
             label='Last Name'
@@ -81,6 +85,7 @@ const Register = (props) => {
             value={address_1}
             placeholder='123 Sweet St.'
             onChange={(e)=>setAddress_1(e.target.value)}
+            required
           />
         <Form.Input 
             label='Address 2'
@@ -88,6 +93,7 @@ const Register = (props) => {
             value={address_2}
             placeholder='Unit 2501'
             onChange={(e)=>setAddress_2(e.target.value)}
+            required
           />
           <Form.Group>
             <Form.Input 
@@ -96,6 +102,7 @@ const Register = (props) => {
               value={city}
               placeholder='Pleasantville'
               onChange={(e)=>setCity(e.target.value)}
+              required
               />
             <Form.Input 
               label='State'
@@ -103,6 +110,7 @@ const Register = (props) => {
               value={state}
               placeholder='NC'
               onChange={(e)=>setState(e.target.value)}
+              required
               />
             <Form.Input 
               label='Zip Code'
@@ -110,6 +118,7 @@ const Register = (props) => {
               value={zip}
               placeholder='995599'
               onChange={(e)=>setZip(e.target.value)}
+              required
               />
           </Form.Group>
         <Form.Button>Submit</Form.Button>
