@@ -33,6 +33,7 @@ const Login = (props) => {
           name='password'
           value={password}
           placeholder='password'
+          type='password'
           onChange={(e)=>setPassword(e.target.value)}
           required
         />

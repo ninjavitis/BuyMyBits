@@ -31,7 +31,7 @@ const App = () => {
   `;
 
   return(
-    <AppContainer style={{height:'120vh'}}>
+    <AppContainer style={{height:'100vh'}}>
       <Navbar />
       <FetchUser>
       <Container>

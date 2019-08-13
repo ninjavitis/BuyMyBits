@@ -7,7 +7,7 @@ const Home = () => {
 
   return(
     <>
-    <Segment style={{overflow: 'auto', maxHeight: '90vh' }}>
+    <Segment style={{overflow: 'auto', maxHeight: '85vh' }}>
       <Items/>
     </Segment>
     </>

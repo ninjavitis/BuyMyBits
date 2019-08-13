@@ -15,8 +15,8 @@ const CartItem = ({item, cartIndex}) => {
           <Item.Meta>Unit Price: ${convertPrice(items[findInItems(item)].cost)}  </Item.Meta>
           <Item.Meta>
             Quantity: {cart[cartIndex].quant}
-            <Button icon='minus' size='mini' color='grey' onClick={()=>updateQuantity(cartIndex, -1)} /> 
-            <Button icon='plus' size='mini' color='grey' onClick={()=>updateQuantity(cartIndex, 1)} /> 
+            <Button icon='minus' size='tiny' color='grey' onClick={()=>updateQuantity(cartIndex, -1)} /> 
+            <Button icon='plus' size='tiny' color='grey' onClick={()=>updateQuantity(cartIndex, 1)} /> 
             </Item.Meta>
           <Item.Extra>
           </Item.Extra> 
