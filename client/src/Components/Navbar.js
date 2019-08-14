@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{ useContext} from 'react';
 import {Menu,Icon, Dropdown,} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import {AuthContext} from '../Providers/AuthProvider'
@@ -7,7 +7,21 @@ import {ShopContext} from '../Providers/ShopProvider'
 const Navbar = (props) => {
 
   const {authenticated, handleLogout, user} = useContext(AuthContext)
-  const {cart} = useContext(ShopContext)
+  const {cart, dataSource, getInternalData, getExternalData} = useContext(ShopContext)
+
+  const dataOptions=[
+    {
+      key: 'internal',
+      text: 'Internal API',
+      value: 'internal',
+    },
+    {
+      key: 'external',
+      text: 'External API',
+      value: 'external',
+    },
+  ]
+  
 
   const menuContent =(
     <>
@@ -47,12 +61,33 @@ const Navbar = (props) => {
     </>
   )
 
+  const changeDataSource=(e,{value})=>{
+    switch (value){
+      case 'internal':
+        getInternalData()
+        break
+      case 'external':
+        getExternalData()
+        break
+      default:
+        getExternalData()
+    }
+  }
+
   return(
     <>
       <Menu inverted>
         <Link to='/'>
           <Menu.Item header >Buy My Bits</Menu.Item>
         </Link>
+          <Menu.Item header >Data Source ></Menu.Item>
+          <Dropdown
+          className='item'
+          selection 
+          placeholder='External API' 
+          options={dataOptions}
+          onChange={changeDataSource}/>
+    
         {menuContent}
       </Menu>
     </>

@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Card, Image, Button, Icon, Label,} from 'semantic-ui-react'
+import {Card, Image, Button, Icon, Label,Segment, Header} from 'semantic-ui-react'
 import {ShopContext} from '../Providers/ShopProvider'
 
 const Items = () => {
@@ -21,20 +21,40 @@ const Items = () => {
     </Card>
   )
 
-  return(
-    <Card.Group stackable itemsPerRow={5}>
-      {items.map((item,i)=><ItemDisplay 
-        key={item.itemid}
-        id={item.itemid}
-        index={i}
-        name={item.name}
-        desc={item.description}
-        image={item.item.images.transparent}
-        cost={item.cost}
-        
-      />)}
-    </Card.Group>
+  const RenderItems =()=>{
+    console.log(items)
+      if(items && items.length > 0){
+        return(
+          <Card.Group itemsPerRow={5}>
+            {items.map((item,i)=>
+              <ItemDisplay 
+                key={item.itemid}
+                id={item.itemid}
+                index={i}
+                name={item.name}
+                desc={item.description}
+                image={item.item.images.transparent}
+                cost={item.cost}
+              />
+            )}
+          </Card.Group>
+        )
+      } else {
+        return(
+          <Segment placeholder>
+            <Header icon color='red' textAlign="center">
+            <Icon name='x'/>
+              No Items Found! - this probably means the db hasn't been seeded.
+              <br/>
+              Try setting the data source to 'external' above.
+            </Header>
+          </Segment>
+        )
+      }
+  }
 
+  return(
+      <RenderItems/>
   )
 }
 

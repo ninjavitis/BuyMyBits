@@ -13,10 +13,11 @@ export class ShopProvider extends React.Component {
     conversionRate: 400,
     digitalFee: 5.00,
     minFee: 0.00,
+    dataSource: 'external'
    };
 
   componentDidMount(){
-    this.getItems();
+    this.getItems('external');
   }
 
   setCheckoutStep=(step)=>{
@@ -121,10 +122,31 @@ export class ShopProvider extends React.Component {
     return this.state.cart.length > 0? this.state.digitalFee : this.state.minFee
   }
 
+  getInternalData=()=>{
+    this.getItems('internal');
+  }
+
+  getExternalData=()=>{
+    this.getItems('external');
+  }
+
   // makes an api call to get the items available for purchase
-  getItems = ()=>{
-    axios.get(`https://fortnite-public-api.theapinetwork.com/store/get`)
-    .then(res=> this.setState({items:res.data.items}))
+  getItems = (source)=>{
+    switch(source){
+      case 'internal':
+        axios.get('/api/items')
+        .then(res=>this.setState({items:res.data}))
+      break
+
+      case 'external':
+        axios.get(`https://fortnite-public-api.theapinetwork.com/store/get`)
+        .then(res=> this.setState({items:res.data.items}))
+        break
+
+      default: 
+        axios.get(`https://fortnite-public-api.theapinetwork.com/store/get`)
+        .then(res=> this.setState({items:res.data.items}))
+    }
   }
 
  render(){
@@ -141,7 +163,9 @@ export class ShopProvider extends React.Component {
       Total: this.Total,
       subTotal: this.subTotal,
       deliveryFee: this.deliveryFee,
-      totalQuantity: this.totalQuantity
+      totalQuantity: this.totalQuantity,
+      getInternalData: this.getInternalData,
+      getExternalData: this.getExternalData,
     }}>
       {this.props.children}
     </ShopContext.Provider>
