@@ -19,7 +19,6 @@ const Checkout = () => {
 
   return (
     <Segment  >
-      {console.log('checkout')}
       {Progress}
       <Cart />
     </Segment>

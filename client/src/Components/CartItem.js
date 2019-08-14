@@ -21,7 +21,7 @@ const CartItem = ({item, cartIndex}) => {
             +
             </Button>
         </Item.Content>
-          <Button icon='cancel' size='mini' onClick={()=>removeFromCart(item.item)} /> 
+          <Button icon='cancel' size='mini' onClick={()=>removeFromCart(item)} /> 
       </Item>
     </>
   )

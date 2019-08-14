@@ -15,6 +15,7 @@ const Navbar = (props) => {
         {authenticated ? 
               <Dropdown text={'Welcome, '+ user.first_name +'!'} pointing className='item' >
                 <Dropdown.Menu>
+                  <Dropdown.Item>My Bits (!)</Dropdown.Item>
                   <Dropdown.Item>Profile (!)</Dropdown.Item>
                   <Dropdown.Item>Orders (!)</Dropdown.Item>
                   <Dropdown.Item onClick={()=>handleLogout(props.history)}>Logout</Dropdown.Item>
@@ -38,7 +39,7 @@ const Navbar = (props) => {
         }
         <Link to='/checkout'>
           <Menu.Item name='Checkout' >
-            <Icon name='shopping cart' color={cart.length > 0? 'white' : 'grey' }   />
+            <Icon name='shopping cart'  />
             Cart
           </Menu.Item>
         </Link>

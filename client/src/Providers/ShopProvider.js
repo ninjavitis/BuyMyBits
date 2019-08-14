@@ -53,16 +53,11 @@ export class ShopProvider extends React.Component {
     }
   }
 
-  // This is funky because the cart only stores item array indexes (prevents needing to pass the object around)
-  // So I have to do the extra step of looking up the itemid in the items array
-  // This is largely a side-effect of using data from an API.  With my own custom backend I could do the individual DB queries necessary
-  removeFromCart=(id)=>{    
+  removeFromCart=(id)=>{
     this.setState({cart:
-      this.state.cart.filter(item=> {
-        return this.state.cart[item].item !== id
-      })
-    })
-  }
+      this.state.cart.filter(item => {return item.item !== id})
+  })
+}
 
   // removes all items from cart
   emptyCart = () => {
@@ -115,7 +110,6 @@ export class ShopProvider extends React.Component {
   subTotal=()=>{
     let subT = 0.0
     this.state.cart.forEach(cItem => {
-      console.log('item index:'+this.findInItems(cItem.item))
       subT += parseFloat((this.state.items[this.findInItems(cItem.item)].cost / this.state.conversionRate)* cItem.quant)
     });
     return subT
