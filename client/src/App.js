@@ -10,8 +10,7 @@ import Login from "./Components/Login";
 import Register from "./Components/Register";
 import NoMatch from "./Components/NoMatch";
 import FetchUser from './Components/FetchUser';
-
-
+import Profile from './Components/Profile'
 
 const App = () => {
   const AppContainer = styled.div`
@@ -40,6 +39,7 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path='/register' component={Register} />
           <Route exact path='/checkout' component={Checkout}/>
+          <Route exact path='/profile' component={Profile}/>
           <Route component={NoMatch} />
         </Switch>
       </Container>
