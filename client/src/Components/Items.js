@@ -13,16 +13,16 @@ const Items = () => {
         <Card.Description>{desc}</Card.Description>
       </Card.Content>
       <Card.Content extra textAlign='center'>
-        <Button as='div' labelPosition='left'>
-          <Label as='a' basic pointing='right'>$ {(parseFloat(cost) / conversionRate).toFixed(2)}</Label>
-          <Button icon color='green' onClick={()=>addToCart(id)}><Icon name='dollar sign'/>Buy These Bits</Button>
+        <Button as='div' size='mini' labelPosition='left'>
+          <Label basic pointing='right'>$ {(parseFloat(cost) / conversionRate).toFixed(2)}</Label>
+          <Button icon size='mini' color='green' onClick={()=>addToCart(id)}><Icon name='dollar sign'/>Buy These Bits</Button>
         </Button>
       </Card.Content>
     </Card>
   )
 
   return(
-    <Card.Group stackable itemsPerRow={4}>
+    <Card.Group stackable itemsPerRow={5}>
       {items.map((item,i)=><ItemDisplay 
         key={item.itemid}
         id={item.itemid}

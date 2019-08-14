@@ -93,7 +93,6 @@ const Register = (props) => {
             value={address_2}
             placeholder='Unit 2501'
             onChange={(e)=>setAddress_2(e.target.value)}
-            required
           />
           <Form.Group>
             <Form.Input 

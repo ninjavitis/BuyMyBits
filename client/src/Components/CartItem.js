@@ -1,5 +1,5 @@
 import React,{useContext} from 'react';
-import {Item, Button} from 'semantic-ui-react'
+import {Item, Button, Label} from 'semantic-ui-react'
 import {ShopContext} from '../Providers/ShopProvider'
 
 
@@ -13,13 +13,13 @@ const CartItem = ({item, cartIndex}) => {
         <Item.Content verticalAlign='middle'> 
           <Item.Header as='h3'>{items[findInItems(item)].name}</Item.Header>
           <Item.Meta>Unit Price: ${convertPrice(items[findInItems(item)].cost)}  </Item.Meta>
-          <Item.Meta>
-            Quantity: {cart[cartIndex].quant}
-            <Button icon='minus' size='tiny' color='grey' onClick={()=>updateQuantity(cartIndex, -1)} /> 
-            <Button icon='plus' size='tiny' color='grey' onClick={()=>updateQuantity(cartIndex, 1)} /> 
-            </Item.Meta>
-          <Item.Extra>
-          </Item.Extra> 
+            <Button size='mini' color='grey' attached='left' onClick={()=>updateQuantity(cartIndex, -1)}>
+              -
+            </Button> 
+            <Label>Quantity: {cart[cartIndex].quant}</Label>
+            <Button size='mini' color='grey' attached='right' onClick={()=>updateQuantity(cartIndex, 1)}>
+            +
+            </Button>
         </Item.Content>
           <Button icon='cancel' size='mini' onClick={()=>removeFromCart(item.item)} /> 
       </Item>
