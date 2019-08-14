@@ -1,11 +1,10 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {Menu, Segment} from 'semantic-ui-react'
 import Cart from './Cart'
-import {ShopContext} from '../Providers/ShopProvider'
 
 // Stripe 
-import {Elements} from 'react-stripe-elements';
-import PaymentForm from './PaymentForm'
+// import {Elements} from 'react-stripe-elements';
+// import PaymentForm from './PaymentForm'
 
 
 

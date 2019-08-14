@@ -39,7 +39,7 @@ const Navbar = (props) => {
         }
         <Link to='/checkout'>
           <Menu.Item name='Checkout' >
-            <Icon name='shopping cart'  />
+            <Icon name='shopping cart' color={cart.length === 0 && 'grey'}   />
             Cart
           </Menu.Item>
         </Link>
