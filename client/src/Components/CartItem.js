@@ -9,10 +9,10 @@ const CartItem = ({item, cartIndex}) => {
   return(
     <>
       <Item>
-        <Item.Image size='tiny' src={items[findInItems(item)].item.images.transparent}/>
+        <Item.Image size='tiny' src={items[findInItems(item)].image}/>
         <Item.Content verticalAlign='middle'> 
           <Item.Header as='h3'>{items[findInItems(item)].name}</Item.Header>
-          <Item.Meta>Unit Price: ${convertPrice(items[findInItems(item)].cost)}  </Item.Meta>
+          <Item.Meta>Unit Price: ${items[findInItems(item)].cost.toFixed(2)}  </Item.Meta>
             <Button size='mini' color='grey' attached='left' onClick={()=>updateQuantity(cartIndex, -1)}>
               -
             </Button> 

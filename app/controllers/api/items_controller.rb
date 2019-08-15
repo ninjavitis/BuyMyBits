@@ -1,5 +1,5 @@
 class Api::ItemsController < ApplicationController
   def index
-    Item.all
+    render json: Item.all
   end
 end

@@ -14,7 +14,7 @@ const Items = () => {
       </Card.Content>
       <Card.Content extra textAlign='center'>
         <Button as='div' size='mini' labelPosition='left'>
-          <Label basic pointing='right'>$ {(parseFloat(cost) / conversionRate).toFixed(2)}</Label>
+          <Label basic pointing='right'>$ {parseFloat(cost).toFixed(2)}</Label>
           <Button icon size='mini' color='green' onClick={()=>addToCart(id)}><Icon name='dollar sign'/>Buy These Bits</Button>
         </Button>
       </Card.Content>
@@ -22,18 +22,17 @@ const Items = () => {
   )
 
   const RenderItems =()=>{
-    console.log(items)
       if(items && items.length > 0){
         return(
           <Card.Group itemsPerRow={5}>
             {items.map((item,i)=>
               <ItemDisplay 
-                key={item.itemid}
-                id={item.itemid}
+                key={item.id}
+                id={item.id}
                 index={i}
                 name={item.name}
                 desc={item.description}
-                image={item.item.images.transparent}
+                image={item.image}
                 cost={item.cost}
               />
             )}

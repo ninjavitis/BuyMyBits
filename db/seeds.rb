@@ -11,6 +11,7 @@
     sku: '00-000-0000',
     name: Faker::Coffee.blend_name,
     description: Faker::Coffee.notes,
-    image: Faker::LoremFlickr.grayscale_image(size: "200x200", search_terms: ['woodworking'])
+    image: Faker::LoremFlickr.grayscale_image(size: "200x200", search_terms: ['woodworking']),
+    cost: rand(1...14) * 0.50
     )
 end

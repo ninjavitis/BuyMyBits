@@ -17,7 +17,7 @@ export class ShopProvider extends React.Component {
    };
 
   componentDidMount(){
-    this.getItems('external');
+    this.getExternalData();
   }
 
   setCheckoutStep=(step)=>{
@@ -68,14 +68,14 @@ export class ShopProvider extends React.Component {
   // this is used to convert the price value stored in the api into dollars
   // only used with the fortnite api data, will be deprecated 
   convertPrice=(value)=>{
-    return (parseFloat(value) / this.state.conversionRate).toFixed(2)
+    return parseFloat(value).toFixed(2)
   }
 
   // Returns the item array index of the object matching a given item id
   findInItems=(itemId)=>{
     let index
     this.state.items.forEach((item,i)=>{
-      if(item.itemid === itemId)
+      if(item.id === itemId)
       {
         index = i
       }
@@ -85,7 +85,6 @@ export class ShopProvider extends React.Component {
 
   findInCart=(itemId)=>{
     let index = null
-
     this.state.cart.forEach((item,i)=>{
       if(item.item === itemId)
       {
@@ -111,7 +110,7 @@ export class ShopProvider extends React.Component {
   subTotal=()=>{
     let subT = 0.0
     this.state.cart.forEach(cItem => {
-      subT += parseFloat((this.state.items[this.findInItems(cItem.item)].cost / this.state.conversionRate)* cItem.quant)
+      subT += parseFloat((this.state.items[this.findInItems(cItem.item)].cost * cItem.quant))
     });
     return subT
   }
@@ -122,31 +121,20 @@ export class ShopProvider extends React.Component {
     return this.state.cart.length > 0? this.state.digitalFee : this.state.minFee
   }
 
-  getInternalData=()=>{
-    this.getItems('internal');
+  getInternalData =()=>{
+    axios.get('/api/items')
+    .then(res=>this.setState({items:res.data}))
   }
 
-  getExternalData=()=>{
-    this.getItems('external');
-  }
-
-  // makes an api call to get the items available for purchase
-  getItems = (source)=>{
-    switch(source){
-      case 'internal':
-        axios.get('/api/items')
-        .then(res=>this.setState({items:res.data}))
-      break
-
-      case 'external':
-        axios.get(`https://fortnite-public-api.theapinetwork.com/store/get`)
-        .then(res=> this.setState({items:res.data.items}))
-        break
-
-      default: 
-        axios.get(`https://fortnite-public-api.theapinetwork.com/store/get`)
-        .then(res=> this.setState({items:res.data.items}))
-    }
+  getExternalData =()=> {
+    axios.get(`https://fortnite-public-api.theapinetwork.com/store/get`)
+    .then(res=> 
+      this.setState({items:
+        res.data.items.map(item=>{
+          return {id:item.itemid, name:item.name, description:item.item.description, image:item.item.images.transparent, cost:item.cost/this.state.conversionRate}
+        })
+      })
+    )
   }
 
  render(){
