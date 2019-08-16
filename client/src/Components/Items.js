@@ -24,7 +24,7 @@ const Items = () => {
   const RenderItems =()=>{
       if(items && items.length > 0){
         return(
-          <Card.Group itemsPerRow={5}>
+          <Card.Group stackable itemsPerRow={5}>
             {items.map((item,i)=>
               <ItemDisplay 
                 key={item.id}
