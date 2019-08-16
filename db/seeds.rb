@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 50.times do
-  Item.create(
+  Item.create!(
     sku: '00-000-0000',
     name: Faker::Coffee.blend_name,
     description: Faker::Coffee.notes,
