@@ -37,14 +37,14 @@ const Home = () => {
               <List.Item>
                 <List.Icon name='github'/>
                 <List.Content>
-                  <List.Header as='a'>https://github.com/ninjavitis/BuyMyBits</List.Header>
+                  <List.Header content={<a href='https://github.com/ninjavitis/BuyMyBits'>https://github.com/ninjavitis/BuyMyBits</a>} />
                   <List.Description>Project Source</List.Description>
                 </List.Content>
               </List.Item>
               <List.Item>
                 <List.Icon name='github'/>
                 <List.Content>
-                  <List.Header as='a'>https://github.com/ninjavitis</List.Header>
+                  <List.Header content={<a href='https://github.com/ninjavitis'>https://github.com/ninjavitis</a>} />
                   <List.Description>GitHub Profile</List.Description>
                 </List.Content>
               </List.Item>
