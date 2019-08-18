@@ -10,10 +10,9 @@ export class ShopProvider extends React.Component {
     items: [],
     cart: [],
     checkoutStep: 1,
-    conversionRate: 400,
+    conversionRate: 400, // converts the fortnite item cost into USD
     digitalFee: 5.00,
     minFee: 0.00,
-    dataSource: 'external'
    };
 
   componentDidMount(){
