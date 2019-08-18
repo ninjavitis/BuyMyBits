@@ -25,7 +25,11 @@ const Home = () => {
               <Item>
                 <Item.Content>
                 <Icon name='warning'/>
-                  To complete the chekcout process use cc# 4242 4242 4242 4242 with any future exp date and 3 digit verification number.  DO NOT USE REAL CC INFO IN THE CHECKOUT FORM!
+                  To complete the checkout process use cc# 4242 4242 4242 4242 with any future exp date and 3 digit verification number.
+                  <br/>
+                  </Item.Content>
+                  <Item.Content>
+                    DO NOT USE REAL CC INFO IN THE CHECKOUT FORM!
                   </Item.Content>
               </Item>
             </Segment>
