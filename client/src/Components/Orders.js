@@ -1,11 +1,19 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {Segment, Header, Icon, Button, Table} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import {AuthContext} from '../Providers/AuthProvider'
 
 
 const Orders = () => {
   const [myOrders, setMyOrders] = useState('')
+  const {user} = useContext(AuthContext)
+
+  useEffect(()=>{
+    axios.get(`/api/orders/#(user.id)`)
+    .then(res=> console.log(res.data))
+    .catch(res=> console.error(res))
+  },[])
 
   const noOrders = (
     <Segment placeholder>
