@@ -11,6 +11,7 @@ import Register from "./Components/Register";
 import NoMatch from "./Components/NoMatch";
 import FetchUser from './Components/FetchUser';
 import Profile from './Components/Profile'
+import Orders from './Components/Orders'
 
 const App = () => {
   const AppContainer = styled.div`
@@ -40,6 +41,7 @@ const App = () => {
           <Route exact path='/register' component={Register} />
           <Route exact path='/checkout' component={Checkout}/>
           <Route exact path='/profile' component={Profile}/>
+          <Route exact path='/orders' component={Orders}/>
           <Route component={NoMatch} />
         </Switch>
       </Container>

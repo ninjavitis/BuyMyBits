@@ -30,8 +30,8 @@ const Navbar = (props) => {
               <Dropdown text={'Welcome, '+ user.first_name +'!'} pointing className='item' >
                 <Dropdown.Menu>
                   <Dropdown.Item >My Bits (!)</Dropdown.Item>
-                    <Dropdown.Item as={Link} to='/profile'>Profile (!)</Dropdown.Item>
-                  <Dropdown.Item>Orders (!)</Dropdown.Item>
+                    <Dropdown.Item as={Link} to='/profile'>Profile</Dropdown.Item>
+                  <Dropdown.Item as={Link} to='orders'>Orders</Dropdown.Item>
                   <Dropdown.Item onClick={()=>handleLogout(props.history)}>Logout</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>

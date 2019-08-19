@@ -101,6 +101,7 @@ const Cart = () => {
     </Segment>
   )
 
+  
   const PaneSwitcher = ()=>{
     switch(paymentSuccess){
       case false: return (cart.length > 0 ? itemPane:emptyCart)
