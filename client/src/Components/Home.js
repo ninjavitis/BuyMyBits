@@ -33,6 +33,10 @@ const Home = () => {
                   </Item.Content>
               </Item>
             </Segment>
+            <Segment>
+              The backend architecture is currently being refactored.  You can see the ER chart for the new design here: 
+            <a href='https://www.lucidchart.com/invitations/accept/8693430e-3d56-4334-b06f-7bc0f334b1df'> https://www.lucidchart.com/invitations/accept/8693430e-3d56-4334-b06f-7bc0f334b1df</a>
+            </Segment>
             <List>
               <List.Item>
                 <List.Icon name='github'/>
