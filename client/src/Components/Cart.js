@@ -5,10 +5,20 @@ import {Segment, Item, Button, Header, Icon} from 'semantic-ui-react'
 import CartItem from './CartItem'
 import {ShopContext} from '../Providers/ShopProvider'
 import StripeCheckout from 'react-stripe-checkout';
+import {AuthContext} from '../Providers/AuthProvider'
+
 
 
 const Cart = () => {
+  /////////////
+  // STATE
+  ////////
   const [paymentSuccess, setPaymentSuccess] = useState(null)
+
+   /////////////
+  // CONTEXT
+  ////////
+  const {user} = useContext(AuthContext)
   const {
     items, 
     cart, 
@@ -18,6 +28,9 @@ const Cart = () => {
     Total, 
   } = useContext(ShopContext)
 
+  /////////////
+  // STRIPE
+  ////////
   const StripeButton = ()=>{
     return(
         <StripeCheckout 
@@ -49,6 +62,9 @@ const Cart = () => {
         });
     };
 
+   /////////////
+  // COMPONENTS
+  ////////
   const itemPane = (
     <>
       <Segment style={{overflow: 'auto', maxHeight: '40vh' }}>
@@ -77,17 +93,16 @@ const Cart = () => {
   )
   
   const checkoutSuccess = (
-    <Segment placeholder>
-    <Header icon textAlign="center">
-    <Icon name='box'/>
-      Order Complete!  Check your bits under your user profile to see your new purchases!
-    </Header>
-    <Link to="/">
-      <Button color='blue'>Check out your bits!</Button>
-    </Link>
-  </Segment>
+        <Segment placeholder>
+        <Header icon textAlign="center">
+        <Icon name='box'/>
+          Order Complete!  Check your bits under your user profile to see your new purchases!
+        </Header>
+        <Link to="/">
+          <Button color='blue'>Check out your bits!</Button>
+        </Link>
+      </Segment>
   )
-
 
   const emptyCart = (
     <Segment placeholder>

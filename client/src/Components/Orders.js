@@ -10,7 +10,7 @@ const Orders = () => {
   const {user} = useContext(AuthContext)
 
   useEffect(()=>{
-    axios.get(`/api/orders/#(user.id)`)
+    axios.get(`/api/orders/${user.id}`)
     .then(res=> console.log(res.data))
     .catch(res=> console.error(res))
   },[])
