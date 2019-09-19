@@ -33,16 +33,17 @@ const Cart = () => {
   ////////
   const StripeButton = ()=>{
     return(
-        <StripeCheckout 
-          amount={Total*100}
-          billingAddress
-          description="TEST ONLY"
-          locale="auto"
-          name="DO NOT ENTER REAL INFO"
-          stripeKey="pk_test_rX64QqpNMyGPDdHjzgkth56T00vFkUhTX2"
-          token={onToken}
-          zipcode
-        />
+      <Button onClick={()=>alert('stripe disabled')}>Checkout</Button>
+        // <StripeCheckout 
+        //   amount={Total*100}
+        //   billingAddress
+        //   description="TEST ONLY"
+        //   locale="auto"
+        //   name="DO NOT ENTER REAL INFO"
+        //   stripeKey="pk_test_rX64QqpNMyGPDdHjzgkth56T00vFkUhTX2"
+        //   token={onToken}
+        //   zipcode
+        // />
     )
   }
 
