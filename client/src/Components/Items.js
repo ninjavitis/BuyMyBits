@@ -45,6 +45,9 @@ const Items = () => {
             <Icon name='x'/>
               No Items Found! - this probably means the db hasn't been seeded or the Fortnite API is down.
               <br/>
+              As of 9/22 the Fortnite API is offline with no word from the maintainer as to when it will be restored.
+              Since the datastructure of the cart is built around the object retrieved from the API Buy My Bits will currently only function in INTERNAL mode.
+              <br />
               Try setting the data source to 'external' above.
             </Header>
           </Segment>
