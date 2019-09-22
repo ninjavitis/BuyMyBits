@@ -43,7 +43,7 @@ const Items = () => {
           <Segment placeholder>
             <Header icon color='red' textAlign="center">
             <Icon name='x'/>
-              No Items Found! - this probably means the db hasn't been seeded.
+              No Items Found! - this probably means the db hasn't been seeded or the Fortnite API is down.
               <br/>
               Try setting the data source to 'external' above.
             </Header>
