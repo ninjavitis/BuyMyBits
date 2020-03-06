@@ -10,16 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_15_233442) do
+ActiveRecord::Schema.define(version: 2019_08_21_160746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "Address1"
+    t.string "Address2"
+    t.string "City"
+    t.string "StateProvince"
+    t.string "PostCode"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "item_price_histories", force: :cascade do |t|
+    t.string "StartDate"
+    t.string "EndDate"
+    t.string "ListPrice"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_item_price_histories_on_item_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -32,13 +54,6 @@ ActiveRecord::Schema.define(version: 2019_08_15_233442) do
     t.float "cost"
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.bigint "user_id"
-    t.decimal "total"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_orders_on_user_id"
-  end
 
   create_table "placements", force: :cascade do |t|
     t.bigint "order_id"
@@ -47,6 +62,15 @@ ActiveRecord::Schema.define(version: 2019_08_15_233442) do
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_placements_on_item_id"
     t.index ["order_id"], name: "index_placements_on_order_id"
+  end
+
+  create_table "user_entitlements", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_user_entitlements_on_item_id"
+    t.index ["user_id"], name: "index_user_entitlements_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -83,7 +107,8 @@ ActiveRecord::Schema.define(version: 2019_08_15_233442) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
-  add_foreign_key "orders", "users"
-  add_foreign_key "placements", "items"
-  add_foreign_key "placements", "orders"
+  add_foreign_key "addresses", "users"
+  add_foreign_key "item_price_histories", "items"
+  add_foreign_key "user_entitlements", "items"
+  add_foreign_key "user_entitlements", "users"
 end

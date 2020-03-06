@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :placement do
-    order { nil }
+  factory :user_entitlement do
+    user { nil }
     item { nil }
   end
 end
